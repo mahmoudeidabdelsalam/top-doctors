@@ -1,0 +1,82 @@
+/* =====
+Datatable page
+===== */
+
+.datatable-page {
+  .v-card__title {
+    .v-input {
+      max-width: 300px !important;
+      border-radius: 50px !important;
+    }
+  }
+  
+  .compo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+
+    &.link {
+      &:hover {
+        .text {
+          .name {
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--main-color)
+          }
+        }
+      }
+      .text {
+        .name {
+          font-size: .9rem;
+          font-weight: 500;
+          color: var(--dark-color);
+          transition: 0.3s;
+        }
+        .sub {
+          font-size: .8rem;
+          color: var(--secondary-color);
+        }
+        .number {
+          font-size: .8rem;
+          color: var(--secondary-color);
+        }
+      }
+    }
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+    }
+
+    .text {
+      .name {
+        font-size: .9rem;
+        font-weight: 500;
+      }
+      .sub {
+        font-size: .8rem;
+        color: var(--secondary-color)
+      }
+      .number {
+        font-size: .8rem;
+        color: var(--secondary-color)
+      }
+    }
+  }
+
+  .actions-btn {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .v-chip {
+    padding: 0px 10px !important;
+    border-radius: 10px !important;
+    font-size: 12px !important;
+  }
+}

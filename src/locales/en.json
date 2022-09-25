@@ -1,0 +1,96 @@
+{
+  "global": {
+    "app_name": "360 Clinics"
+  },
+
+  "side": {
+    "menu": "Menu",
+    "dashboard": "Dashboard",
+    "general": "General",
+    "departments": "Departments",
+    "staff": "Staff",
+    "services": "Services",
+    "departments_services": "Departments Services",
+    "employees": "Employees",
+    "roles": "Roles",
+    "doctors": "Doctors",
+    "clinic": "Clinic",
+    "assistants": "Assistants",
+    "projects": "Projects",
+    "leads": "Leads",
+    "public_forms": "Public Forms",
+    "reservations": "Reservations",
+    "reports": "Reports",
+    "budget_forms": "Budget Forms",
+    "coupones": "Coupones",
+    "budget": "Budget forms",
+    "Surgeries": "Surgeries",
+    "branches": "Branches",
+    "private": "Private",
+    "my_account" : "My Account",
+    "my_tasks" : "My Tasks",
+    "Settings": "Settings",
+    "Taxes" : "Taxes" ,
+    "Sales" : "Sales and Markting",
+    "invoices": "Invoices"
+  },
+
+  "Branches": {
+    "title": "Branches",
+    "Create": "Create",
+    "Patient_name": "Patient name",
+    "Doctor": "Doctor",
+    "En_name": "En Name",
+    "Ar_name": "Ar Name",
+    "Surgery_date": "Surgery date",
+    "Price_Surgery": "Price Surgery"
+  },
+
+  "MyAccount": {
+    "pageTitle": "MyAccount",
+    "pageDescription": "Settings all data",
+    "EnName": "En Name",
+    "ArName": "Ar Name",
+    "Phone": "Phone",
+    "Email": "Email",
+    "EnDesc": "En Description",
+    "ArDesc": "Ar Description",
+    "DentalClinic": "Dental Clinic",
+    "Update": "Update",
+    "SubsidiarySet":"Subsidiary Set",
+    "Country":"Country of The Clinic",
+    "City": "City of The Clinic",
+    "ArAddress":"Address of Clinic In Arabic",
+    "EnAddress":"Address of Clinic In English",
+    "Facebook":"Facebook URL",
+    "Twitter":"Twitter URL",
+    "Instagram":"Instagram URL",
+    "Website":"Our Website URL",
+    "Profile":"Profile",
+    "ClinicInfo":"Clinic Info",
+    "SocialMedia":"Social Media",
+    "GeneralInfo":"General Info",
+    "ArAboutApp":"About App In Arabic",
+    "EnAboutApp":"About App In English"
+  },
+
+  "Projects": {
+    "Title": "Projects",
+    "TName": "Name",
+    "TCount": "Count Down",
+    "TStatus": "Status",
+    "TActions": "Actions",
+    "AddNew": "New Project ",
+    "EnName": "En Name",
+    "ArName": "Ar Name",
+    "EnDesc": "En Description",
+    "ArDesc": "Ar Description",
+    "DueDate": "Due Date",
+    "Photo": "Project photo",
+    "Close":"Close",
+    "Add":"Add",
+    "Edit": "Edit Project",
+    "New": "New Project"
+  }
+
+}

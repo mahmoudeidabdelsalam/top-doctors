@@ -1,0 +1,46 @@
+{
+  "global": {
+    "app_name": "360 Clinics"
+  },
+  "side": {
+    "menu": "القائمة",
+    "dashboard": "لوحة التحكم",
+    "general": "عام",
+    "departments": "الأقسام",
+    "staff": "طاقم العمل",
+    "services": "الخدمات",
+    "departments_services": "خدمات الأقسام",
+    "employees": "الموظفين",
+    "roles": "الأدوار",
+    "doctors": "الأطباء",
+    "clinic": "العيادة",
+    "assistants": "المساعدين",
+    "projects": "المشاريع",
+    "leads": "العملاء",
+    "public_forms": "النماذج العامة",
+    "reservations": "الحجوزات",
+    "reports": "التقارير",
+    "budget_forms": "نماذج الميزانية",
+    "invoices": "الفواتير",
+
+    "coupones": "الكوبونات",
+
+    "budget": "الميزانية",
+
+    "Surgeries": "العمليات",
+
+    "branches": "الفروع",
+
+    "private": "خاص",
+
+    "my_account" : "حسابي",
+
+    "my_tasks" : "مهامي",
+
+    "Settings": "اعدادات",
+
+    "Taxes": "ضرائب",
+
+    "Sales" : "عروض و تسويق"
+  }
+}

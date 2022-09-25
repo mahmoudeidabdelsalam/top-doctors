@@ -1,0 +1,191 @@
+/* =====
+Sidebar
+===== */
+
+.dashboard-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: var(--main-color);
+  z-index: 9999;
+  width: 100%;
+  overflow-y: auto;
+  
+  // brand logo
+  .brand {
+    text-align: center;
+    padding: 20px;
+    span {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white-color);
+    }
+  }
+
+  // sidebar nav
+  .sidebar-nav {
+    // main menu
+    ul.main-menu {
+      position: relative;
+      height: 100% !important;
+      overflow: auto;
+      padding: 0;
+      li {
+        // category title
+        &.category-name {
+          span {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #abb9e8;
+            text-transform: uppercase;
+          }
+        }
+
+        // main menu item
+        &.main-menu-item {
+          // main menu item in active state
+          &.active {
+            // main menu link
+            .main-menu-link {
+              .content {
+                .material-icons {
+                  color: var(--white-color);
+                }
+                .text {
+                  color: var(--white-color);
+                }
+              }
+              .arrow {
+                .material-icons {
+                  transform: rotate(90deg);
+                }
+              }
+            }
+            // sub menu
+            ul.submenu {
+              height: auto;
+            }
+          }
+
+          // main menu item in hover state
+          &:hover {
+            // main menu link
+            .main-menu-link {
+              .content {
+                .material-icons {
+                  color: var(--white-color);
+                }
+                .text {
+                  color: var(--white-color);
+                }
+              }
+              .arrow {
+                .material-icons {
+                  color: var(--white-color);
+                }
+              }
+            }
+          }
+
+          // main menu link
+          .main-menu-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: relative;
+            padding: 12px 25px;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: none;
+            }
+
+            .content {
+              display: flex;
+              justify-content: start;
+              align-items: center;
+              gap: 10px;
+              .material-icons {
+                font-size: 20px;
+                color: #abb9e8;
+                transition: 0.3s;
+              }
+              .text {
+                font-size: 14px;
+                font-weight: 400;
+                color: #abb9e8;
+                transition: 0.3s;
+              }
+            }
+            .arrow {
+              .material-icons {
+                font-size: 16px;
+                color: #abb9e8;
+                transition: 0.3s;
+              }
+            }
+          }
+
+          // submenu
+          ul.submenu {
+            padding: 0 30px;
+            height: 0;
+            overflow: hidden;
+            transition: 0.3s;
+
+            li {
+              &.submenu-item {
+                padding: 10px 0;
+                .submenu-link {
+                  position: relative;
+                  padding-left: 20px;
+                  [dir=rtl] & {
+                    padding-left: 0;
+                    padding-right: 20px;
+                  }
+                  // submenu link icon
+                  &::before {
+                    position: absolute;
+                    content: '';
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                    [dir=rtl] & {
+                      left: auto;
+                      right: 0;
+                    }
+                    width: 6px;
+                    height: 2px;
+                    background-color: #abb9e8;
+                  }
+                  // submenu link in active state
+                  &.active {
+                    .text {
+                      color: var(--white-color);
+                    }
+                  }
+                  // submenu link in hover state
+                  &:hover {
+                    .text {
+                      color: var(--white-color);
+                    }
+                  }
+
+                  .text {
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #abb9e8;
+                    transition: 0.3s;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
