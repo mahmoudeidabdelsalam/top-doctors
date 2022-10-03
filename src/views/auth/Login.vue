@@ -6,45 +6,11 @@
           <div class="content">
             <div class="header flex-s-b align-center">
               <div class="logo">
-                <!-- <img src="@/assets/images/global/logo/logo.png" alt="360 Clinics"> -->
+                <img src="@/assets/images/pages/global/logo.png" alt="Top Doctors">
               </div>
             </div>
 
-            <div class="body" v-if="!successCompany">
-              <div class="title">
-                <span class="d-block mb-5">Welcome again!</span>
-                <span>Company check</span>
-              </div>
-
-              <form @submit.prevent="companyCheck()">
-                <v-text-field
-                  v-model="companyData.name"
-                  label="Company name"
-                  required
-                  :rules="[rules.required]"
-                  outlined
-                ></v-text-field>
-
-                <v-text-field
-                  v-model="companyData.code"
-                  label="Company code"
-                  type="number"
-                  required
-                  :rules="[rules.required, rules.counter]"
-                  outlined
-                ></v-text-field>
-
-                <v-btn
-                  class="mr-4"
-                  color="primary"
-                  type="submit"
-                >
-                  Next step
-                </v-btn>
-              </form>
-            </div>
-
-            <div class="body" v-if="successCompany">
+            <div class="body">
               <div class="title">
                 <span>Login</span>
               </div>
@@ -99,17 +65,9 @@
     name: "Login",
     data() {
       return {
-        successCompany: false,
-        companyApiUrl: null,
-        // Company data
-        companyData: {
-          name: "The Clinics",
-          code: "9220",
-        },
-
         // Login data
         loginData: {
-          email: "demo1@gmail.com",
+          email: "doctor@gmail.com",
           password: "password",
         },
         
@@ -142,21 +100,7 @@
       }
     },
     methods: {
-      // Company check
-      companyCheck() {
-        let data = new FormData();
-        data.append("name", this.companyData.name);
-        data.append('code', this.companyData.code);
-        this.axios.post(process.env.VUE_APP_API_URL+`v1/check-company`, data).then((response) => {
-          this.successCompany = true;
-          this.companyApiUrl = response.data.data.domain;
-          // Set company api url in localStorage
-          localStorage.setItem("companyApiUrl", this.companyApiUrl);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      },
+      
       // Normal login method
       login() {
 
@@ -165,7 +109,7 @@
         data.append('password', this.loginData.password);
 
         this.axios
-        .post(`${this.companyApiUrl}/admin/login`, data)
+        .post(process.env.VUE_APP_API_URL + `/admin/login`, data)
         .then((response) => {
           // Set user data and user token in localStorage
           // localStorage.setItem("userObject", JSON.stringify(response.data.user));

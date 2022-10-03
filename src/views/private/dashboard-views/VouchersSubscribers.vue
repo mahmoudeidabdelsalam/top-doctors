@@ -361,7 +361,7 @@ export default {
   mounted() {
     // Get all subscribers
     // this.axios
-    // .get(`${localStorage.companyApiUrl}/v1/dashboard/subscribers`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    // .get(process.env.VUE_APP_API_URL + `/v1/dashboard/subscribers`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     // .then((response) => {
     //   this.subscribers = response.data.data;
     // })
@@ -378,7 +378,7 @@ export default {
       data.append("name[ar]", this.subscribersData.Donor);
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/v1/dashboard/subscribers`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/v1/dashboard/subscribers`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.newDialog = false;
@@ -398,7 +398,7 @@ export default {
     bindSubscribersData(item) {
       // Get single subscribers by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/v1/dashboard/subscribers/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/v1/dashboard/subscribers/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.subscribersData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -423,7 +423,7 @@ export default {
         data.append("name[ar]", this.subscribersData.Donor);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/v1/dashboard/subscribers/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlenrecipientd', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/v1/dashboard/subscribers/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlenrecipientd', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -442,7 +442,7 @@ export default {
     // Delete item
     deleteSubscribers(item) {
         this.axios
-        .delete(`${localStorage.companyApiUrl}/v1/dashboard/subscribers/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .delete(process.env.VUE_APP_API_URL + `/v1/dashboard/subscribers/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.deleteDialog = false;

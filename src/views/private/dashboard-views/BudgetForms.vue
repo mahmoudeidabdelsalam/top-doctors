@@ -416,7 +416,7 @@ export default {
   },
   mounted() {
     // Get all budget forms
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/budgets-forms`, this.forms);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/budgets-forms`, this.forms);
   },
   mixins: [crudActionsMixins],
   methods: {
@@ -430,7 +430,7 @@ export default {
       data.append("end_date", this.formData.end_date);
       data.append("daily_budget", this.formData.daily_budget);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/budgets-forms`, data, this.forms, this.formData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/budgets-forms`, data, this.forms, this.formData);
     },
     
     // Bind item data
@@ -449,7 +449,7 @@ export default {
       data.append("daily_budget", this.formData.daily_budget);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/v1/dashboard/budgets-forms/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/v1/dashboard/budgets-forms/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -467,7 +467,7 @@ export default {
 
     // Delete item
     deleteBudgetForm(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/v1/dashboard/budgets-forms/${item.id}`, item, this.forms);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/v1/dashboard/budgets-forms/${item.id}`, item, this.forms);
     },
   },
 }

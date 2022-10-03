@@ -259,7 +259,7 @@ export default {
   },
   mounted() {
     // Get all leads
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/leads`, this.leads);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/leads`, this.leads);
   },
   mixins: [crudActionsMixins],
   methods: {
@@ -272,14 +272,14 @@ export default {
       data.append("description[en]", this.leadData.enDescription);
       data.append("description[ar]", this.leadData.arDescription);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/leads`, data, this.leads, this.leadData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/leads`, data, this.leads, this.leadData);
     },
     
     // Bind item data
     bindLeadData(item) {
       // Get single leads by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/leads/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/leads/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.leadData = response.data.data;
       })
@@ -299,7 +299,7 @@ export default {
       data.append("national_id", this.leadData.national_id);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/leads/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/leads/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -317,7 +317,7 @@ export default {
 
     // Delete item
     deleteLead(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/leads/${item.id}`, item, this.leads);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/leads/${item.id}`, item, this.leads);
     },
   },
 }

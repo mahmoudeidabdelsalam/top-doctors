@@ -427,7 +427,7 @@ export default {
 
   mounted() {
     // Get all projects
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/projects`, this.projects);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/projects`, this.projects);
   },
 
   mixins: [crudActionsMixins],
@@ -453,14 +453,14 @@ export default {
       data.append("due_date", this.projectData.due_date);
       data.append("project_image", this.projectData.photo);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/projects`, data, this.projects, this.projectData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/projects`, data, this.projects, this.projectData);
     },
     
     // Bind item data
     bindProjectData(item) {
       // Get single projects by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/projects/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/projects/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.projectData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -493,7 +493,7 @@ export default {
       data.append("_method", 'PUT');
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/dashboard/projects/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/dashboard/projects/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -511,7 +511,7 @@ export default {
 
     // Delete item
     deleteProject(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/projects/${item.id}`, item, this.projects);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/projects/${item.id}`, item, this.projects);
     },
   },
 }

@@ -320,7 +320,7 @@ export default {
   },
   mounted() {
     // Get all services
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/services`, this.services);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/services`, this.services);
   },
   mixins: [crudActionsMixins],
   methods: {
@@ -333,14 +333,14 @@ export default {
       data.append("description[en]", this.serviceData.enDescription);
       data.append("description[ar]", this.serviceData.arDescription);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/services`, data, this.services, this.serviceData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/services`, data, this.services, this.serviceData);
     },
     
     // Bind item data
     bindServiceData(item) {
       // Get single services by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.serviceData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -370,7 +370,7 @@ export default {
       data.append("description[ar]", this.serviceData.arDescription);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/services/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/services/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -388,7 +388,7 @@ export default {
 
     // Delete item
     deleteService(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/services/${item.id}`, item, this.services);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/services/${item.id}`, item, this.services);
     },
   },
 }

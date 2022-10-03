@@ -302,7 +302,7 @@
     mounted() {
       // Get assistant
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/assistants/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
+      .get(process.env.VUE_APP_API_URL + `/dashboard/assistants/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
       .then((response) => {
         this.assistant = response.data.data
         this.formData = response.data.data
@@ -330,7 +330,7 @@
         data.append('birthday', this.formData.birthday);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/dashboard/assistants/${this.profileId}`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
+        .put(process.env.VUE_APP_API_URL + `/dashboard/assistants/${this.profileId}`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
         .then((response) => {
           this.assistant = response.data.data
           // success message

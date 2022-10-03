@@ -243,7 +243,7 @@ export default {
     // Get reservation
     this.axios
       .get(
-        `${localStorage.companyApiUrl}/dashboard/reservations/${this.profileId}`,
+        process.env.VUE_APP_API_URL + `/dashboard/reservations/${this.profileId}`,
         { headers: { Authorization: `Bearer ${localStorage.userToken}` } }
       )
       .then((response) => {

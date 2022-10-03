@@ -415,7 +415,7 @@ export default {
   mixins: [crudActionsMixins],
   mounted() {
     // Get all departments
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/departments`, this.departments);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/departments`, this.departments);
   },
   methods: {
     // Handle item image
@@ -439,14 +439,14 @@ export default {
       data.append("telephone", this.departmentData.telephone);
       data.append("image", this.departmentData.photo);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/departments`, data, this.departments, this.departmentData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/departments`, data, this.departments, this.departmentData);
     },
     
     // Bind item data
     bindDepartmentData(item) {
       // Get single departments by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.departmentData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -476,7 +476,7 @@ export default {
       data.append("image", this.departmentData.photo);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -494,7 +494,7 @@ export default {
 
     // Delete item
     deleteDepartment(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/departments/${item.id}`, item, this.departments);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/departments/${item.id}`, item, this.departments);
     },
   },
 }

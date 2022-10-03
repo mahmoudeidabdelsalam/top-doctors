@@ -241,7 +241,7 @@ export default {
   mounted() {
     // Get all taxes
     // this.axios
-    // .get(`${localStorage.companyApiUrl}/v1/dashboard/taxes`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    // .get(process.env.VUE_APP_API_URL + `/v1/dashboard/taxes`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     // .then((response) => {
     //   this.taxes = response.data.data;
     // })
@@ -259,7 +259,7 @@ export default {
       data.append("name[ar]", this.taxesData.percent);
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/v1/dashboard/services`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/v1/dashboard/services`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.newDialog = false;
@@ -288,7 +288,7 @@ export default {
         data.append("name[ar]", this.taxesData.percent);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/v1/dashboard/services/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/v1/dashboard/services/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -307,7 +307,7 @@ export default {
     // Delete item
     deleteTaxes(item) {
         this.axios
-        .delete(`${localStorage.companyApiUrl}/v1/dashboard/services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .delete(process.env.VUE_APP_API_URL + `/v1/dashboard/services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.deleteDialog = false;

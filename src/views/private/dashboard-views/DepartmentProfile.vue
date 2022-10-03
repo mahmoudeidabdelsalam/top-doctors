@@ -115,7 +115,7 @@
     mounted() {
       // Get department
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/departments/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
+      .get(process.env.VUE_APP_API_URL + `/dashboard/departments/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
       .then((response) => {
         this.department = response.data.data
       })

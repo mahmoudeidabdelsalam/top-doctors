@@ -212,13 +212,13 @@ export default {
   mounted() {
     // Get all patients
     this.getItems(
-      `${localStorage.companyApiUrl}/dashboard/patients`,
+      process.env.VUE_APP_API_URL + `/dashboard/patients`,
       this.patients
     );
 
     // Get all departments
     this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/departments`, {
+      .get(process.env.VUE_APP_API_URL + `/dashboard/departments`, {
         headers: { Authorization: `Bearer ${localStorage.userToken}` },
       })
       .then((response) => {
@@ -276,7 +276,7 @@ export default {
       data.append("image", this.patientData.photo);
 
       this.addItem(
-        `${localStorage.companyApiUrl}/dashboard/patients`,
+        process.env.VUE_APP_API_URL + `/dashboard/patients`,
         data,
         this.patients,
         this.patientData
@@ -287,7 +287,7 @@ export default {
     bindpatientData(item) {
       // Get single patients by id
       this.axios
-        .get(`${localStorage.companyApiUrl}/dashboard/patients/${item.id}`, {
+        .get(process.env.VUE_APP_API_URL + `/dashboard/patients/${item.id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.userToken}`,
             lang: this.$i18n.locale === "en" ? "ar" : "en",
@@ -335,7 +335,7 @@ export default {
 
       this.axios
         .put(
-          `${localStorage.companyApiUrl}/dashboard/patients/${item.id}`,
+          process.env.VUE_APP_API_URL + `/dashboard/patients/${item.id}`,
           data,
           {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -364,7 +364,7 @@ export default {
     // Delete item
     deletePatient(item) {
       this.deleteItem(
-        `${localStorage.companyApiUrl}/dashboard/patients/${item.id}`,
+        process.env.VUE_APP_API_URL + `/dashboard/patients/${item.id}`,
         item,
         this.patients
       );

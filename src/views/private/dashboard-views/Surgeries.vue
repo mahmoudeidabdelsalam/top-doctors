@@ -379,7 +379,7 @@ export default {
   mounted() {
     // Get all Surgeries
     this.axios
-    .get(`${localStorage.companyApiUrl}/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.Surgeries = response.data.data;
     })
@@ -396,7 +396,7 @@ export default {
         data.append("patient_name", this.surgeriesData.Patient_name);
 
         this.axios
-        .post(`${localStorage.companyApiUrl}/v1/dashboard/departments`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .post(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.newDialog = false;
@@ -406,7 +406,7 @@ export default {
           this.$toast.success(response.data.message);
           // Get all Surgeries
           this.axios
-          .get(`${localStorage.companyApiUrl}/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+          .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
           .then((response) => {
             this.Surgeries = response.data.data;
           })
@@ -423,7 +423,7 @@ export default {
     bindsurgeriesData(item) {
       // Get single Surgeries by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.surgeriesData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -447,7 +447,7 @@ export default {
         data.append("patient_name", this.surgeriesData.Patient_name);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -457,7 +457,7 @@ export default {
           this.$toast.success(response.data.message);
           // Get all Surgeries
           this.axios
-          .get(`${localStorage.companyApiUrl}/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+          .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
           .then((response) => {
             this.Surgeries = response.data.data;
           })
@@ -473,7 +473,7 @@ export default {
     // Delete item
     deleteSurgerie(item) {
         this.axios
-        .delete(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .delete(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
             // close dialog
             this.deleteDialog = false;
@@ -481,7 +481,7 @@ export default {
             this.$toast.success(response.data.message);
             // Get all Surgeries
             this.axios
-            .get(`${localStorage.companyApiUrl}/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+            .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
             .then((response) => {
               this.Surgeries = response.data.data;
             })

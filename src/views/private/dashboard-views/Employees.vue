@@ -383,11 +383,11 @@ export default {
   },
   mounted() {
     // Get all employees
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/employees`, this.employees);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/employees`, this.employees);
 
     // Get all roles
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/roles`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/roles`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.roles = response.data.data.map((role) => {
         return {
@@ -441,14 +441,14 @@ export default {
         data.append("role", this.employeeData.role);
         data.append("image", this.employeeData.photo);
 
-        this.addItem(`${localStorage.companyApiUrl}/dashboard/employees`, data, this.employees, this.employeeData);
+        this.addItem(process.env.VUE_APP_API_URL + `/dashboard/employees`, data, this.employees, this.employeeData);
       },
     
     // Bind item data
     bindDeleteEmployeeData(item) {
       // Get single employees by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/employees/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/employees/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.employeeData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -475,7 +475,7 @@ export default {
       data.append("description[ar]", this.employeeData.arDescription);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/employees/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/employees/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -493,7 +493,7 @@ export default {
 
     // Delete item
     deleteEmployee(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/employees/${item.id}`, item, this.employees);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/employees/${item.id}`, item, this.employees);
     },
   },
 }

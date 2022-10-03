@@ -346,7 +346,7 @@ export default {
       data.append("name[ar]", this.couponesData.percent);
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/v1/dashboard/coupones`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/v1/dashboard/coupones`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.newDialog = false;
@@ -366,7 +366,7 @@ export default {
     bindCouponesData(item) {
       // Get single coupones by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/v1/dashboard/coupones/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/v1/dashboard/coupones/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.couponesData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -391,7 +391,7 @@ export default {
         data.append("name[ar]", this.couponesData.percent);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/v1/dashboard/coupones/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/v1/dashboard/coupones/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -410,7 +410,7 @@ export default {
     // Delete item
     deleteCoupones(item) {
         this.axios
-        .delete(`${localStorage.companyApiUrl}/v1/dashboard/coupones/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .delete(process.env.VUE_APP_API_URL + `/v1/dashboard/coupones/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.deleteDialog = false;

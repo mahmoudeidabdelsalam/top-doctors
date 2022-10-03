@@ -294,11 +294,11 @@ export default {
   },
   mounted() {
     // Get all roles
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/roles`, this.roles);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/roles`, this.roles);
 
     // Get all roles permissions
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/permissions`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/permissions`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.permissions = response.data.data.map((permission) => {
         return {
@@ -323,14 +323,14 @@ export default {
         data.append(`permissions[]`, this.roleData.permissions[i]);
       }
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/roles`, data, this.roles, this.roleData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/roles`, data, this.roles, this.roleData);
     },
     
     // Bind item data
     bindRoleData(item) {
       // Get single roles by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/roles/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/roles/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.roleData = response.data.data;
         this.roleData.permissions = response.data.data.permissions.map((permission) => {
@@ -359,7 +359,7 @@ export default {
       }
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/roles/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/roles/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -377,7 +377,7 @@ export default {
 
     // Delete item
     deleteRole(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/roles/${item.id}`, item, this.roles);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/roles/${item.id}`, item, this.roles);
     },
   },
 }

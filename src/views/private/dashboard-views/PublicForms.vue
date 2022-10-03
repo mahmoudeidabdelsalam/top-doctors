@@ -429,7 +429,7 @@ export default {
   },
   mounted() {
     // Get all public forms
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/forms`, this.forms);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/forms`, this.forms);
   },
   mixins: [crudActionsMixins],
   methods: {
@@ -445,7 +445,7 @@ export default {
       data.append("redirection_status", this.formData.redirection_status);
       data.append("department_service_id", this.formData.department_service_id);
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/forms`, data, this.forms, this.formData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/forms`, data, this.forms, this.formData);
     },
     
     // Bind item data
@@ -466,7 +466,7 @@ export default {
       data.append("department_service_id", this.formData.department_service_id);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/forms/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/forms/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -484,7 +484,7 @@ export default {
 
     // Delete item
     deletePublicForm(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/forms/${item.id}`, item, this.forms);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/forms/${item.id}`, item, this.forms);
     },
   },
 }

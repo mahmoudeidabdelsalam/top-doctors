@@ -450,11 +450,11 @@ export default {
   },
   mounted() {
     // Get all assistants
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/assistants`, this.assistants);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/assistants`, this.assistants);
 
     // Get all doctors
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/doctors`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/doctors`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.doctors = response.data.data.map((doctor) => {
         return {
@@ -508,14 +508,14 @@ export default {
         data.append(`doctors[]`, this.assistantData.doctors[i]);
       }
 
-      this.addItem(`${localStorage.companyApiUrl}/dashboard/assistants`, data, this.assistants, this.assistantData);
+      this.addItem(process.env.VUE_APP_API_URL + `/dashboard/assistants`, data, this.assistants, this.assistantData);
     },
     
     // Bind item data
     bindAssistantData(item) {
       // Get single assistants by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/assistants/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/assistants/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.assistantData.email = item.email;
         this.assistantData.personalPhone = item.personal_phone;
@@ -558,7 +558,7 @@ export default {
       data.append("_method", 'PUT');
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/dashboard/assistants/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/dashboard/assistants/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -576,7 +576,7 @@ export default {
 
     // Delete item
     deleteAssistant(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/assistants/${item.id}`, item, this.assistants);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/assistants/${item.id}`, item, this.assistants);
     },
   },
 }

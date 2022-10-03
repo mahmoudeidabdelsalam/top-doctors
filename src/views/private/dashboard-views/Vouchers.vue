@@ -246,7 +246,7 @@ export default {
   mounted() {
     // Get all vouchers
     // this.axios
-    // .get(`${localStorage.companyApiUrl}/v1/dashboard/vouchers`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    // .get(process.env.VUE_APP_API_URL + `/v1/dashboard/vouchers`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     // .then((response) => {
     //   this.vouchers = response.data.data;
     // })
@@ -262,7 +262,7 @@ export default {
       data.append("name[ar]", this.vouchersData.percent);
 
       this.axios
-        .post(`${localStorage.companyApiUrl}/v1/dashboard/vouchers`, data, {
+        .post(process.env.VUE_APP_API_URL + `/v1/dashboard/vouchers`, data, {
           headers: { Authorization: `Bearer ${localStorage.userToken}` },
         })
         .then((response) => {
@@ -284,7 +284,7 @@ export default {
     bindVouchersData(item) {
       // Get single vouchers by id
       this.axios
-        .get(`${localStorage.companyApiUrl}/v1/dashboard/vouchers/${item.id}`, {
+        .get(process.env.VUE_APP_API_URL + `/v1/dashboard/vouchers/${item.id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.userToken}`,
             lang: this.$i18n.locale === "en" ? "ar" : "en",
@@ -314,7 +314,7 @@ export default {
 
       this.axios
         .put(
-          `${localStorage.companyApiUrl}/v1/dashboard/vouchers/${item.id}`,
+          process.env.VUE_APP_API_URL + `/v1/dashboard/vouchers/${item.id}`,
           data,
           {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -344,7 +344,7 @@ export default {
     deleteVouchers(item) {
       this.axios
         .delete(
-          `${localStorage.companyApiUrl}/v1/dashboard/vouchers/${item.id}`,
+          process.env.VUE_APP_API_URL + `/v1/dashboard/vouchers/${item.id}`,
           { headers: { Authorization: `Bearer ${localStorage.userToken}` } }
         )
         .then((response) => {

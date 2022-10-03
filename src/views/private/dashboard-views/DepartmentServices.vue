@@ -23,7 +23,7 @@
     mixins: [crudActionsMixins],
     mounted() {
       // Get departments
-      // this.getItems(`${localStorage.companyApiUrl}/dashboard/departments/${this.profileId}`, this.department);
+      // this.getItems(process.env.VUE_APP_API_URL + `/dashboard/departments/${this.profileId}`, this.department);
     },
   }
 </script>

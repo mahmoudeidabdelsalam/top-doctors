@@ -276,7 +276,7 @@ export default {
   mounted() {
     // Get all departmets services
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/departments-services`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/departments-services`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.departmetsServices = response.data.data;
     })
@@ -286,7 +286,7 @@ export default {
 
     // Get all departments
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.departments = response.data.data.map((department) => {
         return {
@@ -301,7 +301,7 @@ export default {
 
     // Get all services
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/services`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/services`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.services = response.data.data.map((service) => {
         return {
@@ -324,7 +324,7 @@ export default {
       data.append("service_id[]", this.departmentServiceData.service_id);
 
       this.axios
-      .post(`${localStorage.companyApiUrl}/dashboard/departments-services`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .post(process.env.VUE_APP_API_URL + `/dashboard/departments-services`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.newDialog = false;
@@ -361,7 +361,7 @@ export default {
       } 
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/dashboard/departments-services/${item.id}?status=${status}`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/dashboard/departments-services/${item.id}?status=${status}`, data, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -380,7 +380,7 @@ export default {
     // Delete item
     deleteDepartmentService(item) {
       this.axios
-      .delete(`${localStorage.companyApiUrl}/dashboard/departments-services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .delete(process.env.VUE_APP_API_URL + `/dashboard/departments-services/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.deleteDialog = false;

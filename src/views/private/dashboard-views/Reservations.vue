@@ -450,7 +450,7 @@ export default {
   mounted() {
     //get all doctors
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/doctors`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/doctors`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.doctors = response.data.data.map((doctor) => {
         return {
@@ -465,7 +465,7 @@ export default {
 
     //get all patients
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/patients`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/patients`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.patients = response.data.data.map((patient) => {
         return {
@@ -479,11 +479,11 @@ export default {
     });
 
     // Get all reservations
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/reservations`, this.reservations);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/reservations`, this.reservations);
 
     // Get all Avalibale Time
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/reservations/get-available-dates`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/reservations/get-available-dates`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.times = response.data.data
       console.log(this.times)
@@ -510,14 +510,14 @@ export default {
         data.append("reservation_day", this.reservationsData.detectionDate);
         // data.append("image", this.reservationsData.photo);
 
-        this.addItem(`${localStorage.companyApiUrl}/dashboard/reservations`, data, this.reservations, this.reservationsData);
+        this.addItem(process.env.VUE_APP_API_URL + `/dashboard/reservations`, data, this.reservations, this.reservationsData);
     },
     
     // Bind item data
     bindReservationsData(item) {
       // Get single reservations by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/reservations/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/reservations/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.reservationsData.doctorName = item.doctor.full_name;
         this.reservationsData.patientName = item.patient.full_name;
@@ -544,7 +544,7 @@ export default {
         data.append("reservation_day", this.reservationsData.detectionDate);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/dashboard/reservations/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/dashboard/reservations/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -562,7 +562,7 @@ export default {
 
     // Delete item
     deleteReservations(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/reservations/${item.id}`, item, this.reservations);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/reservations/${item.id}`, item, this.reservations);
     },
   },
 }

@@ -271,7 +271,7 @@
     mounted() {
       // Get doctor
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/doctors/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
+      .get(process.env.VUE_APP_API_URL + `/dashboard/doctors/${this.profileId}`, { headers: { Authorization: `Bearer ${localStorage.userToken}` } })
       .then((response) => {
         this.doctor = response.data.data
       })

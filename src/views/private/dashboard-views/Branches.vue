@@ -376,7 +376,7 @@ export default {
   mounted() {
     // Get all Branches
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.Branches = response.data.data;
     })
@@ -401,14 +401,14 @@ export default {
       data.append("telephone", this.departmentData.telephone);
       data.append("image", this.departmentData.photo);
 
-      this.addItem(`${localStorage.companyApiUrl}/v1/dashboard/departments`, data, this.departments, this.departmentData);
+      this.addItem(process.env.VUE_APP_API_URL + `/v1/dashboard/departments`, data, this.departments, this.departmentData);
     },
 
     // Bind item data
     bindBranchesData(item) {
       // Get single departments by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.departmentData = response.data.data;
         if (this.$i18n.locale == "en") {
@@ -438,7 +438,7 @@ export default {
       data.append("image", this.departmentData.photo);
 
       this.axios
-      .put(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+      .put(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
       .then((response) => {
         // close dialog
         this.editDialog = false;
@@ -456,7 +456,7 @@ export default {
 
     // Delete item
     deleteBranche(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/v1/dashboard/departments/${item.id}`, item, this.departments);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/v1/dashboard/departments/${item.id}`, item, this.departments);
     },
 
   },

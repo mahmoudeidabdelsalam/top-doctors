@@ -515,11 +515,11 @@ export default {
   },
   mounted() {
     // Get all doctors
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/doctors`, this.doctors);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/doctors`, this.doctors);
 
     // Get all departments
     this.axios
-    .get(`${localStorage.companyApiUrl}/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+    .get(process.env.VUE_APP_API_URL + `/dashboard/departments`, { headers: { Authorization: `Bearer ${localStorage.userToken}` }})
     .then((response) => {
       this.departments = response.data.data.map((department) => {
         return {
@@ -576,14 +576,14 @@ export default {
         data.append("session_price", this.doctorData.sessionPrice);
         data.append("image", this.doctorData.photo);
 
-        this.addItem(`${localStorage.companyApiUrl}/dashboard/doctors`, data, this.doctors, this.doctorData);
+        this.addItem(process.env.VUE_APP_API_URL + `/dashboard/doctors`, data, this.doctors, this.doctorData);
     },
     
     // Bind item data
     bindDoctorData(item) {
       // Get single doctors by id
       this.axios
-      .get(`${localStorage.companyApiUrl}/dashboard/doctors/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
+      .get(process.env.VUE_APP_API_URL + `/dashboard/doctors/${item.id}`, { headers: { Authorization: `Bearer ${localStorage.userToken}`, lang: this.$i18n.locale === 'en' ? 'ar' : 'en' }})
       .then((response) => {
         this.doctorData.sessionPrice = item.session_price;
         this.doctorData.personalPhone = item.personal_phone;
@@ -625,7 +625,7 @@ export default {
         data.append("image", this.doctorData.photo);
 
         this.axios
-        .put(`${localStorage.companyApiUrl}/dashboard/doctors/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
+        .put(process.env.VUE_APP_API_URL + `/dashboard/doctors/${item.id}`, data, { 'Content-Type': 'application/x-www-form-urlencoded', headers: { Authorization: `Bearer ${localStorage.userToken}` }})
         .then((response) => {
           // close dialog
           this.editDialog = false;
@@ -643,7 +643,7 @@ export default {
 
     // Delete item
     deleteDoctor(item) {
-      this.deleteItem(`${localStorage.companyApiUrl}/dashboard/doctors/${item.id}`, item, this.doctors);
+      this.deleteItem(process.env.VUE_APP_API_URL + `/dashboard/doctors/${item.id}`, item, this.doctors);
     },
   },
 }

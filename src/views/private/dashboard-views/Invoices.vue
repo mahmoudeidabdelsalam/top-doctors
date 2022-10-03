@@ -288,7 +288,7 @@ export default {
   },
   mounted() {
     // Get all invoices
-    this.getItems(`${localStorage.companyApiUrl}/dashboard/invoices`, this.invoices);
+    this.getItems(process.env.VUE_APP_API_URL + `/dashboard/invoices`, this.invoices);
   },
   mixins: [crudActionsMixins],
   methods: {
