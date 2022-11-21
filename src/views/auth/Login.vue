@@ -67,7 +67,7 @@
       return {
         // Login data
         loginData: {
-          email: "doctor@gmail.com",
+          email: "admin@gmail.com",
           password: "password",
         },
         
@@ -109,7 +109,7 @@
         data.append('password', this.loginData.password);
 
         this.axios
-        .post(process.env.VUE_APP_API_URL + `/admin/login`, data)
+        .post(process.env.VUE_APP_API_URL + `/admin/auth/login`, data)
         .then((response) => {
           // Set user data and user token in localStorage
           // localStorage.setItem("userObject", JSON.stringify(response.data.user));

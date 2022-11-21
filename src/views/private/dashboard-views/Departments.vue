@@ -6,7 +6,7 @@
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
-          label="Search"
+          :label="$t('Departments.search')"
           outlined
         ></v-text-field>
       </v-card-title>
@@ -29,13 +29,16 @@
           <v-toolbar
             flat
           >
-            <v-toolbar-title>Departments</v-toolbar-title>
+            <v-toolbar-title>{{ $t('Departments.title') }}</v-toolbar-title>
             <v-divider
               class="mx-4"
               inset
               vertical
             ></v-divider>
+
             <v-spacer></v-spacer>
+
+
             <!-- New item dialog -->
             <v-dialog
               v-model="newDialog"
@@ -54,7 +57,7 @@
               </template>
               <v-card>
                 <v-card-title>
-                  <span class="text-h5">New Department</span>
+                  <span class="text-h5">{{ $t('Departments.new_dep') }}</span>
                 </v-card-title>
                 <v-card-text>
                   <v-container>
@@ -65,7 +68,7 @@
                       >
                         <v-text-field
                           v-model="departmentData.enName"
-                          label="En Name"
+                          :label="$t('Departments.name_en')"
                           required
                         ></v-text-field>
                       </v-col>
@@ -76,7 +79,7 @@
                       >
                         <v-text-field
                           v-model="departmentData.arName"
-                          label="Ar Name"
+                          :label="$t('Departments.name_ar')"
                           dir="rtl"
                           required
                         ></v-text-field>
@@ -88,7 +91,7 @@
                       >
                         <v-textarea
                           v-model="departmentData.enDescription"
-                          label="En Description"
+                          :label="$t('Departments.description_en')"
                           rows="4"
                           required
                         ></v-textarea>
@@ -100,7 +103,7 @@
                       >
                         <v-textarea
                           v-model="departmentData.arDescription"
-                          label="Ar Description"
+                          :label="$t('Departments.description_ar')"
                           dir="rtl"
                           rows="4"
                           required
@@ -113,7 +116,7 @@
                       >
                         <v-text-field
                           v-model="departmentData.email"
-                          label="Emali"
+                          :label="$t('Departments.email')"
                           required
                         ></v-text-field>
                       </v-col>
@@ -124,16 +127,9 @@
                       >
                         <v-text-field
                           v-model="departmentData.telephone"
-                          label="Telephone"
+                          :label="$t('Departments.telephone')"
                           required
                         ></v-text-field>
-                      </v-col>
-                      
-                      <v-col
-                        cols="12"
-                        md="6"
-                      >
-                        <UploadImages @changed="handleImages" :max="1" uploadMsg="Department photo" maxError="Max files exceed" fileError="images files only accepted" clearAll="Remove all" />
                       </v-col>
                     </v-row>
                   </v-container>
@@ -145,25 +141,26 @@
                     text
                     @click="newDialog = false"
                   >
-                    Close
+                    {{$t('Departments.close')}}
                   </v-btn>
                   <v-btn
                     color="blue darken-1"
                     text
                     @click="addDepartment"
                   >
-                    Add
+                  {{$t('Departments.add')}}
                   </v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
+            <!-- Edit item dialog -->
+
           </v-toolbar>
         </template>
 
         <!-- Image and info -->
         <template v-slot:[`item.department`]="{ item }">
           <router-link :to="{ name: 'DepartmentProfile', params: { profileId: item.id } }" class="compo link">
-            <img :src="item.logo" />
             <div class="text">
               <span class="name d-block">{{ item.name }}</span>
             </div>

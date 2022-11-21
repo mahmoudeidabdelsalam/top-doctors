@@ -136,26 +136,24 @@
           <span>{{ $t('side.clinic') }}</span>
         </li>
         <!-- main menu item -->
-        <li :class="$route.name === 'Projects' ? 'main-menu-item active' : 'main-menu-item'">
-          <!-- main menu link -->
+        <!-- <li :class="$route.name === 'Projects' ? 'main-menu-item active' : 'main-menu-item'">
           <router-link :to="{ name: 'Projects' }" class="main-menu-link">
             <div class="content">
               <v-icon>picture_in_picture</v-icon>
               <span class="text">{{ $t('side.projects') }}</span>
             </div>
           </router-link>
-        </li>
+        </li> -->
 
         <!-- main menu item -->
-        <li :class="$route.name === 'Leads' ? 'main-menu-item active' : 'main-menu-item'">
-          <!-- main menu link -->
+        <!-- <li :class="$route.name === 'Leads' ? 'main-menu-item active' : 'main-menu-item'">
           <router-link :to="{ name: 'Leads' }" class="main-menu-link">
             <div class="content">
               <v-icon>touch_app</v-icon>
               <span class="text">{{ $t('side.leads') }}</span>
             </div>
           </router-link>
-        </li>
+        </li> -->
 
         <!-- main menu item -->
         <li :class="$route.name === 'Invoices' ? 'main-menu-item active' : 'main-menu-item'">
@@ -169,15 +167,14 @@
         </li>
 
         <!-- main menu item -->
-        <li :class="$route.name === 'PublicForms' ? 'main-menu-item active' : 'main-menu-item'">
-          <!-- main menu link -->
+        <!-- <li :class="$route.name === 'PublicForms' ? 'main-menu-item active' : 'main-menu-item'">
           <router-link :to="{ name: 'PublicForms' }" class="main-menu-link">
             <div class="content">
               <v-icon>format_list_bulleted</v-icon>
               <span class="text">{{ $t('side.public_forms') }}</span>
             </div>
           </router-link>
-        </li>
+        </li> -->
 
         <!-- main menu item -->
         <li :class="$route.name === 'Reservations' ? 'main-menu-item active' : 'main-menu-item'">
@@ -251,6 +248,9 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/scss/layouts/_sidebar.scss';
 .dashboard-sidebar .brand {
-    padding: 45px !important;
+    padding: 10px 45px !important;
+}
+.dashboard-sidebar .brand img {
+  max-height: 100px;
 }
 </style>

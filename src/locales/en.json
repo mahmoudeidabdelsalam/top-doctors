@@ -91,6 +91,34 @@
     "Add":"Add",
     "Edit": "Edit Project",
     "New": "New Project"
+  },
+
+  "Departments": {
+    "title": "Departments",
+    "email": "Email",
+    "name": "Name",
+    "description": "Description",
+    "actions": "Actions",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "new_dep": "New Department",
+    "edit_dep": "Edit Department",
+    "delete_dep": "Delete Department",
+    "confirm": "Confirm",
+    "confirm_delete": "Are you sure you want to delete this department?",
+    "search": "Search",
+    "name_ar": "Name in Arabic",
+    "name_en": "Name in English",
+    "telephone": "Telephone",
+    "description_en": "Description in English",
+    "description_ar": "Description in Arabic",
+    "link": "Link"
   }
 
 }
